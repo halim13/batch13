@@ -1,7 +1,9 @@
 ## Keterangan nomor 6
 
 Buat database dengan nama "batch13_h13" tanpa tanda kutip
+
 import database yang ada pada folder 6/db
+
 sesuaikan data username dan password phpmyadmin pada file config.php di dalam folder 6
 
 ### screenshoot aplikasi
