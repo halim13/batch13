@@ -194,8 +194,8 @@
     <script>
         function hapus() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah anda yakin??',
+                text: "Data tidak bisa di kembalikan lagi!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -204,8 +204,8 @@
             }).then((result) => {
                 if (result.value) {
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'Data Raisa Andriana ID #1',
+                        'Berhasil Dihapus.',
                         'success'
                     )
                 }
