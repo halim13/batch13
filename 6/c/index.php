@@ -65,7 +65,7 @@ include "../config.php";
                             <td><?= $data['product_name'] ?></td>
                             <td><?= $data['category_name'] ?></td>
                             <td>Rp. <?= $data['product_price'] ?></td>
-                            <td><a href="#" class="text-success" data-toggle="modal" data-target="#edit">Edit</a> | <a href="#" class="text-danger" onclick="hapus()">Delete</a></td>
+                            <td><a href="#" class="text-success" data-toggle="modal" data-target="#edit" data-id="" data-product="<?= $data['product_name'] ?>" data-cashier="" data-category="" data-price="<?= $data['product_price'] ?>" >Edit</a> | <a href="#" class="text-danger" onclick="hapus()">Delete</a></td>
                         </tr>
                     <?php
                     }
@@ -86,10 +86,10 @@ include "../config.php";
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form action="aksi.php" method="post">
+                <div class="modal-body">
                     <div class="form-group">
-                        <select class="form-control" id="cashier">
+                        <select class="form-control" id="cashier" name="cashier">
                             <?php
                             // pilih semua data dari tabel cashier
                             $q = "SELECT * from cashier";
@@ -98,39 +98,39 @@ include "../config.php";
                             // perulangan menampilkan data users
                             while ($data = mysqli_fetch_array($query)) {
                                 ?>
-                                <option value=""><?= $data['name'] ?></option>
+                                <option value="<?= $data['id'] ?>"><?= $data['name'] ?></option>
                             <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" id="product">
+                        <select class="form-control" id="category" name="category">
                             <?php
                             // pilih semua data dari tabel cashier
-                            $q = "SELECT * from product";
+                            $q = "SELECT * from category";
                             // eksekusi
                             $query = mysqli_query($connect, $q);
-                            // perulangan menampilkan data product
+                            // perulangan menampilkan data category
                             while ($data = mysqli_fetch_array($query)) {
                                 ?>
-                                <option value=""><?= $data['name'] ?></option>
+                                <option value="<?= $data['id'] ?>"><?= $data['name'] ?></option>
                             <?php
                             }
                             ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="category" placeholder="Drink" require>
+                        <input type="text" class="form-control" id="product" name="product" placeholder="Product" require>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="price" placeholder="Rp. 10.000" require>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Rp. 10.000" require>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">ADD</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submitTambah" name="submitTambah" class="btn btn-primary">ADD</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -146,49 +146,52 @@ include "../config.php";
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <select class="form-control" id="cashier">
-                            <?php
-                            // pilih semua data dari tabel cashier
-                            $q = "SELECT * from cashier";
-                            // eksekusi
-                            $query = mysqli_query($connect, $q);
-                            // perulangan menampilkan data users
-                            while ($data = mysqli_fetch_array($query)) {
+                <form action="aksi.php" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <select class="form-control" id="cashier" name="cashier">
+                                <?php
+                                // pilih semua data dari tabel cashier
+                                $q = "SELECT * from cashier";
+                                // eksekusi
+                                $query = mysqli_query($connect, $q);
+                                // perulangan menampilkan data users
+                                while ($data = mysqli_fetch_array($query)) {
+                                    ?>
+                                    <option value="<?= $data['id'] ?>"><?= $data['name'] ?></option>
+                                <?php
+                                }
                                 ?>
-                                <option value=""><?= $data['name'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="product">
-                            <?php
-                            // pilih semua data dari tabel cashier
-                            $q = "SELECT * from product";
-                            // eksekusi
-                            $query = mysqli_query($connect, $q);
-                            // perulangan menampilkan data product
-                            while ($data = mysqli_fetch_array($query)) {
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="category" name="category">
+                                <?php
+                                // pilih semua data dari tabel cashier
+                                $q = "SELECT * from category";
+                                // eksekusi
+                                $query = mysqli_query($connect, $q);
+                                // perulangan menampilkan data category
+                                while ($data = mysqli_fetch_array($query)) {
+                                    ?>
+                                    <option value="<?= $data['id'] ?>"><?= $data['name'] ?></option>
+                                <?php
+                                }
                                 ?>
-                                <option value=""><?= $data['name'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="product" name="product" placeholder="Product" require>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="Rp. 10.000" require>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="category" placeholder="Drink" require>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="price" placeholder="Rp. 10.000" require>
+                    <div class="modal-footer">
+                        <button type="submit" id="submitEdit" name="submitTambah" class="btn btn-primary">EDIT</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">EDIT</button>
             </div>
         </div>
     </div>
