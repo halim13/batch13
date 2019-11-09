@@ -1,6 +1,7 @@
 <?php
 function createMatrix($jumlah)
 {
+    echo "Jumlah array = " . $jumlah . "<br>";
     $arr = [];
     $total = 0;
     $angkanya = 0;
@@ -13,7 +14,7 @@ function createMatrix($jumlah)
         echo "<br>";
     }
 
-    $panjang = count($arr) - 1;
+    $panjang = $jumlah - 1;
 
     for ($i = 0; $i < $jumlah; $i++) {
         for ($j = 0; $j < $jumlah; $j++) {
@@ -30,7 +31,7 @@ function createMatrix($jumlah)
     }
 
 
-    echo "total " . $total;
+    echo "Total = " . $total;
 }
 
 createMatrix(4);
